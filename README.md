@@ -2,6 +2,25 @@
 
 [![npm version](https://badge.fury.io/js/react-native-ble-advertise.svg)](https://badge.fury.io/js/react-native-ble-advertise)
 
+## Update 2025/12/31 for development build for Android
+
+- install expo-asset
+- upgrade expo to 52.0.48
+  - delete node_modules folder
+  - npm install expo@52.0.48
+  - npx expo install
+- add standard metro.config.js
+- npm install -g eas-cli
+- eas login ( eas whoami to check login status)
+- get projectId
+  - on expo web , create new project and obtain new projectId
+  - eas init --id projectId 
+- eas build:configure
+- eas build --profile development --platform android
+- scan QR code to download finished Apps build onto the phone
+- npx expo start ( --clear to clear the cache ) to start development server
+- input the IP on the Apps to connect to development server
+
 ## Getting started
 
 `npm install react-native-ble-advertise`
