@@ -12,10 +12,24 @@ export default function App() {
   const [isAdvertising, setIsAdvertising] = useState(false);
 
   const askForPermission = async () => {
-    const permission = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.BLUETOOTH_ADVERTISE);
-    if (permission !== PermissionsAndroid.RESULTS.GRANTED) {
-      console.log('Permission denied');
-    }
+    //const permission = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.BLUETOOTH_ADVERTISE);
+    //if (permission !== PermissionsAndroid.RESULTS.GRANTED) {
+    //  console.log('Permission denied');
+    //}
+    if (Platform.OS === 'android') {
+      var permissionsRequiredToBeAccepted = [
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      ];
+
+      if (Platform.Version >= 31) {
+        permissionsRequiredToBeAccepted.push(...[
+        PermissionsAndroid.PERMISSIONS.BLUETOOTH_ADVERTISE
+        ]);
+      };
+      PermissionsAndroid.requestMultiple(permissionsRequiredToBeAccepted).then(permissionRequestResult => {});
+    };
+
+   
   };
 
   const startAdvertising = async () => {
